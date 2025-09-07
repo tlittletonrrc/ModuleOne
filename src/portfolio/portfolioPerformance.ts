@@ -39,4 +39,22 @@ function calculatePortfolioPerformance(initialInvestment: number, currentValue: 
     };
 }
 
-export default calculatePortfolioPerformance;
+interface asset {
+    id: number;
+    name: string;
+    value: number;
+}
+
+function findLargestHolding(portfolio: asset[]): asset {
+    let largest = portfolio[0];
+
+    for (let i = 1; i < portfolio.length; i++) {
+        if (portfolio[i].value > largest.value) {
+            largest = portfolio[i];
+        }
+    }
+
+    return largest;
+}
+
+export default calculatePortfolioPerformance; findLargestHolding;
