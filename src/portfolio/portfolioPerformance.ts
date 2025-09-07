@@ -1,7 +1,4 @@
-function calculatePortfolioPerformance() {
-    let initialInvestment: number = 10000;
-    let currentValue: number = 12000;
-
+function calculatePortfolioPerformance(initialInvestment: number, currentValue: number) {
     const profitOrLoss: number = currentValue - initialInvestment;
 
     const percentageChange: number = (profitOrLoss / initialInvestment) * 100;
