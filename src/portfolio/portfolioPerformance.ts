@@ -57,4 +57,26 @@ function findLargestHolding(portfolio: asset[]): asset {
     return largest;
 }
 
-export default calculatePortfolioPerformance; findLargestHolding;
+function calculateAssetAllocation(portfolio: asset[]): { name: string; value: number; percentage: number }[] {
+    let totalValue = 0;
+    for (let i = 0; i < portfolio.length; i++) {
+        totalValue += portfolio[i].value;
+    }
+
+    const assetAllocation: { name: string; value: number; percentage: number }[] = [];
+
+    for (let i = 0; i < portfolio.length; i++) {
+        const asset = portfolio[i];
+        const percentage = (asset.value / totalValue) * 100;
+
+        assetAllocation.push({
+            name: asset.name,
+            value: asset.value,
+            percentage: percentage,
+        });
+    }
+
+    return assetAllocation;
+}
+
+export default calculatePortfolioPerformance; findLargestHolding; calculateAssetAllocation;
