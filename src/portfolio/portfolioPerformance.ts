@@ -1,4 +1,4 @@
-export function calculatePortfolioPerformance(initialInvestment: number, currentValue: number): { initialInvestment: number; currentValue: number; profitOrLoss: number;  percentageChange: number;  performanceSummary: string;} {    const profitOrLoss: number = currentValue - initialInvestment;
+function calculatePortfolioPerformance(initialInvestment: number, currentValue: number): { initialInvestment: number; currentValue: number; profitOrLoss: number;  percentageChange: number;  performanceSummary: string;} {    const profitOrLoss: number = currentValue - initialInvestment;
 
     const percentageChange: number = (profitOrLoss / initialInvestment) * 100;
 
@@ -44,10 +44,10 @@ export interface asset {
     value: number;
 }
 
-export function findLargestHolding(portfolio: asset[]): asset {
+function findLargestHolding(portfolio: asset[]): asset {
     let largest: asset = portfolio[0];
 
-    for (let i = 1; i < portfolio.length; i++) {
+    for (let i: number = 1; i < portfolio.length; i++) {
         if (portfolio[i].value > largest.value) {
             largest = portfolio[i];
         }
@@ -56,17 +56,17 @@ export function findLargestHolding(portfolio: asset[]): asset {
     return largest;
 }
 
-export function calculateAssetAllocation(portfolio: asset[]): { name: string; value: number; percentage: number }[] {
-    let totalValue = 0;
+function calculateAssetAllocation(portfolio: asset[]): { name: string; value: number; percentage: number }[] {
+    let totalValue: number = 0;
     for (let i: number = 0; i < portfolio.length; i++) {
         totalValue += portfolio[i].value;
     }
 
     const assetAllocation: { name: string; value: number; percentage: number }[] = [];
 
-    for (let i = 0; i < portfolio.length; i++) {
-        const asset = portfolio[i];
-        const percentage = (asset.value / totalValue) * 100;
+    for (let i: number = 0; i < portfolio.length; i++) {
+        const asset: asset = portfolio[i];
+        const percentage: number = (asset.value / totalValue) * 100;
 
         assetAllocation.push({
             name: asset.name,
@@ -78,4 +78,4 @@ export function calculateAssetAllocation(portfolio: asset[]): { name: string; va
     return assetAllocation;
 }
 
-export default calculatePortfolioPerformance; findLargestHolding; calculateAssetAllocation;
+export { calculatePortfolioPerformance, findLargestHolding, calculateAssetAllocation }
