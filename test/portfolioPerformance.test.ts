@@ -1,4 +1,4 @@
-import { calculatePortfolioPerformance, findLargestHolding, asset } from "../src/portfolio/portfolioPerformance";
+import { calculatePortfolioPerformance, findLargestHolding, asset, calculateAssetAllocation } from "../src/portfolio/portfolioPerformance";
 
 describe("calculatePortfolioPerformance", () => {
     it("should return a profit when currentValue > initialInvestment", () => {
@@ -47,5 +47,35 @@ describe("findLargestHolding", () => {
         ];
         const largest = findLargestHolding(portfolio);
         expect([20]).toContain(largest.value);
+    });
+});
+
+describe("calculateAssetAllocation", () => {
+    it("should return correct allocation for even distribution", () => {
+        const portfolio: asset[] = [
+            { id: 1, name: "stocks", value: 50 },
+            { id: 2, name: "bonds", value: 50 },
+        ];
+        const allocation = calculateAssetAllocation(portfolio);
+        expect(allocation.length).toBe(2);
+        expect(allocation[0].percentage).toBe(50);
+        expect(allocation[1].percentage).toBe(50);
+    });
+
+    it("should return correct allocation for uneven distribution", () => {
+        const portfolio: asset[] = [
+            { id: 1, name: "stocks", value: 30 },
+            { id: 2, name: "bonds", value: 70 },
+        ];
+        const allocation = calculateAssetAllocation(portfolio);
+        expect(allocation.length).toBe(2);
+        expect(allocation[0].percentage).toBe(30);
+        expect(allocation[1].percentage).toBe(70);
+    });
+
+    it("should return an empty array if portfolio is empty", () => {
+        const portfolio: asset[] = [];
+        const allocation = calculateAssetAllocation(portfolio);
+        expect(allocation).toEqual([]);
     });
 });
