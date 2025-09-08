@@ -1,4 +1,4 @@
-function calculatePortfolioPerformance(initialInvestment: number, currentValue: number) {
+export function calculatePortfolioPerformance(initialInvestment: number, currentValue: number) {
     const profitOrLoss: number = currentValue - initialInvestment;
 
     const percentageChange: number = (profitOrLoss / initialInvestment) * 100;
@@ -39,13 +39,13 @@ function calculatePortfolioPerformance(initialInvestment: number, currentValue: 
     };
 }
 
-interface asset {
+export interface asset {
     id: number;
     name: string;
     value: number;
 }
 
-function findLargestHolding(portfolio: asset[]): asset {
+export function findLargestHolding(portfolio: asset[]): asset {
     let largest = portfolio[0];
 
     for (let i = 1; i < portfolio.length; i++) {
@@ -57,7 +57,7 @@ function findLargestHolding(portfolio: asset[]): asset {
     return largest;
 }
 
-function calculateAssetAllocation(portfolio: asset[]): { name: string; value: number; percentage: number }[] {
+export function calculateAssetAllocation(portfolio: asset[]): { name: string; value: number; percentage: number }[] {
     let totalValue = 0;
     for (let i = 0; i < portfolio.length; i++) {
         totalValue += portfolio[i].value;
