@@ -20,8 +20,8 @@ const portfolio: asset[] = [
 ];
 
 app.get("/api/v1/portfolio/performance", (req, res) => {
-    const initialInvestment = 10;
-    const currentValue = 20;
+    const initialInvestment: number = 10;
+    const currentValue: number = 20;
     res.json(calculatePortfolioPerformance(initialInvestment, currentValue));
 });
 
